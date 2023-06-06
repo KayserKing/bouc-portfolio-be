@@ -10,4 +10,8 @@ const createUserService = async (name, email, password) => {
     return createUser
 }
 
-module.exports = { createUserService }
+const findUsersService=async ()=>{
+    const users =  await Users.find();
+     return users;
+}
+module.exports = { createUserService ,findUsersService}
