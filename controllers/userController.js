@@ -2,7 +2,6 @@ const {
   createUserService,
   findUsersService,
 } = require("../services/userService");
-const Users = require("../models/users");
 
 const createUserController = async (req, res) => {
   const { name, email, password } = req?.body;
