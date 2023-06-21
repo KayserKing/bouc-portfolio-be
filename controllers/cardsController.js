@@ -1,4 +1,8 @@
-const { createCardService } = require("../services/cardService");
+const {
+  createCardService,
+  findCardsService,
+  updateCardService,
+} = require("../services/cardService");
 
 const createCardController = async (req, res) => {
   const { title, subTitle, description, image, type, active } = req?.body;
@@ -23,4 +27,36 @@ const createCardController = async (req, res) => {
   console.log(req.body);
 };
 
-module.exports = { createCardController };
+const updateCardController = async (req, res) => {
+  console.log(req);
+  try {
+    const updatecard = await updateCardService(req);
+    console.log("createcard", updatecard);
+    res.send({
+      status: 200,
+      message: "card updated successfully",
+      data: updatecard,
+    });
+  } catch (err) {
+    res.send({ status: 400, message: err });
+  }
+};
+
+const findcardController = async (req, res) => {
+  try {
+    const findcards = await findCardsService();
+    console.log(findcards);
+    res.send({
+      status: 200,
+      message: "Users fetched successfully!",
+      data: findcards,
+    });
+  } catch (err) {
+    res.send({ status: 400, message: err });
+  }
+};
+module.exports = {
+  createCardController,
+  findcardController,
+  updateCardController,
+};
