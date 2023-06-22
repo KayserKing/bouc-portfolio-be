@@ -2,6 +2,7 @@ const {
   createCardService,
   findCardsService,
   updateCardService,
+  deletecardsServices,
 } = require("../services/cardService");
 
 const createCardController = async (req, res) => {
@@ -55,8 +56,21 @@ const findcardController = async (req, res) => {
     res.send({ status: 400, message: err });
   }
 };
+
+const deleteCardController = async (req, res) => {
+  try {
+    const deletecards = await deletecardsServices(req);
+    res.send({
+      status: 200,
+      message: "user deleted Successfully",
+    });
+  } catch (err) {
+    res.send({ status: 400, message: err });
+  }
+};
 module.exports = {
   createCardController,
   findcardController,
   updateCardController,
+  deleteCardController,
 };

@@ -42,10 +42,24 @@ const updateCardService = async (req) => {
 
 const findCardsService = async () => {
   try {
-    const cards = await Cards.find();
-    return cards;
+    const findcards = await Cards.find();
+    return findcards;
   } catch (err) {
     return err;
   }
 };
-module.exports = { createCardService, findCardsService, updateCardService };
+
+const deletecardsServices = async (req) => {
+  try {
+    const deletecards = await Cards.deleteOne(req.params._id);
+  } catch (err) {
+    return err;
+  }
+};
+
+module.exports = {
+  createCardService,
+  findCardsService,
+  updateCardService,
+  deletecardsServices,
+};
