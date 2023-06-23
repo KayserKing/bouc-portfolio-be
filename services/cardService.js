@@ -23,4 +23,43 @@ const createCardService = async (
     return err;
   }
 };
-module.exports = { createCardService };
+
+const updateCardService = async (req) => {
+  try {
+    const updateCards = await Cards.findByIdAndUpdate(req.params._id, {
+      title: title,
+      subtitle: req.body.subTitle,
+      description: req.body.description,
+      image: req.body.image,
+      type: req.body.type,
+      active: req.body.active,
+    });
+    return updateCards;
+  } catch (err) {
+    return err;
+  }
+};
+
+const findCardsService = async () => {
+  try {
+    const findcards = await Cards.find();
+    return findcards;
+  } catch (err) {
+    return err;
+  }
+};
+
+const deletecardsServices = async (req) => {
+  try {
+    const deletecards = await Cards.deleteOne(req.params._id);
+  } catch (err) {
+    return err;
+  }
+};
+
+module.exports = {
+  createCardService,
+  findCardsService,
+  updateCardService,
+  deletecardsServices,
+};
